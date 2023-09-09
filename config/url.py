@@ -1,2 +1,2 @@
 class Url:
-    DOMAIN = 'https://courses.ultimateqa.com/users/sign_in'
+    DOMAIN = 'https://ultimateqa.com/simple-html-elements-for-automation/'
