@@ -23,5 +23,5 @@ class IndexPage:
     def click_on_submit_button(self, page: Page) -> None:
         return page.locator(self._BUTTON_SUBMIT).click()
 
-    def get_text_after_submission(self, page: Page) -> None:
-        return page.locator(self. _SUBMISSION_TEXT).get_attribute('value')
+    def get_text_after_submission(self, page: Page):
+        return page.locator(self. _SUBMISSION_TEXT).inner_text()
