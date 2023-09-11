@@ -2,10 +2,7 @@ import allure
 import pytest
 import pages
 import time
-from playwright.sync_api import Page, expect
-
-
-
+from playwright.sync_api import Page, expect, sync_playwright
 
 
 class TestFooter:
@@ -16,8 +13,7 @@ class TestFooter:
         pages.search_page.open_search_page(page)
         pages.search_page.following_the_github_api_link(page)
         with allure.step('переход по ссылке'):
-            actual_result = pages.search_page.rest_api_site_after_link(page)
-        assert actual_result == 'REST API', '"REST API" message is not correct'
+            expect(page).to_have_url("https://developer.github.com/v3/")
 
     @allure.feature('GitHub source')
     @allure.story('Переход на GitHub источник')
@@ -25,8 +21,7 @@ class TestFooter:
         pages.search_page.open_search_page(page)
         pages.search_page.following_the_github_source_link(page)
         with allure.step('переход по ссылке'):
-            actual_result = pages.search_page.source_github_after_lick(page)
-        assert actual_result == 'Github User Search ', '"Github User Search " message is not correct'
+            expect(page).to_have_url("https://github.com/simonsmith/github-user-search")
 
     @allure.feature('GitHub profile')
     @allure.story('Ввод английского текста в поисковую строку переход на профиль')
@@ -55,7 +50,8 @@ class TestFooter:
         pages.search_page.put_text_in_search_fild(page)
         pages.search_page.click_on_the_pagination_button(page)
         with allure.step('Вторая страница результатов поиска'):
-            expect(page).to_have_url("https://simonsmith.github.io/github-user-search/#/search?per_page=42&page=2&q=Bob-1")
+            expect(page).to_have_url(
+                "https://simonsmith.github.io/github-user-search/#/search?per_page=42&page=2&q=Bob-1")
 
     @allure.feature('Multiply search')
     @allure.story('Ввод не английского текста в поисковую строку')
@@ -63,4 +59,5 @@ class TestFooter:
         pages.search_page.open_search_page(page)
         pages.search_page.put_invalid_text_in_search_fild(page)
         with allure.step('Результат поиска'):
-            expect(page).to_have_url("https://simonsmith.github.io/github-user-search/#/search?per_page=42&page=1&q=%E6%8F%8F")
+            expect(page).to_have_url(
+                "https://simonsmith.github.io/github-user-search/#/search?per_page=42&page=1&q=%E6%8F%8F")

@@ -14,10 +14,6 @@ class SearchPage:
     _PAGINATION_BUTTON = "//*[contains(text(),'Next')]"
 
 
-
-    _BUTTON_SUBMIT = "//*[@name='et_builder_submit_button']"
-    _SUBMISSION_TEXT = "//*[@class='et-pb-contact-message']"
-
     def open_search_page(self, page: Page) -> None:
         page.goto(config.url.DOMAIN)
 
@@ -58,21 +54,4 @@ class SearchPage:
 
     def click_on_the_pagination_button(self, page: Page) -> None:
         return page.locator(self._PAGINATION_BUTTON).click()
-
-
-
-
-    def put_text_in_name_folder(self, page: Page) -> None:
-        page.locator(self._NAME_FOLDER).click()
-        return page.locator(self._NAME_FOLDER).fill("Temmi")
-
-    def put_text_in_email_folder(self, page: Page) -> None:
-        page.locator(self._EMAIL_FOLDER).click()
-        return page.locator(self._EMAIL_FOLDER).fill("mail@gmail.com")
-
-    def click_on_submit_button(self, page: Page) -> None:
-        return page.locator(self._BUTTON_SUBMIT).click()
-
-    def get_text_after_submission(self, page: Page):
-        return page.locator(self. _SUBMISSION_TEXT).inner_text()
 
