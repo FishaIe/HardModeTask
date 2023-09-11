@@ -1,2 +1,2 @@
 class Url:
-    DOMAIN = 'https://ultimateqa.com/simple-html-elements-for-automation/'
+    DOMAIN = 'https://simonsmith.github.io/github-user-search/#/search'

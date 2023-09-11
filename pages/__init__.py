@@ -1,3 +1,3 @@
-from pages.index_page import IndexPage
+from pages.search_page import IndexPage
 
 index_page = IndexPage()
