@@ -1,3 +1,4 @@
+# Report files
 __pycache__
 report_allure
 .pytest_cache

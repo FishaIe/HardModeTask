@@ -1,19 +1,18 @@
 import allure
 import pytest
 import pages
-import time
-from playwright.sync_api import Page, expect, sync_playwright
+from playwright.sync_api import expect
 
 
 class TestFooter:
-
     @allure.feature('API link')
     @allure.story('Переход на документацию REST API GITHUB')
     def test_following_the_github_api_link(self, page):
         pages.search_page.open_search_page(page)
         pages.search_page.following_the_github_api_link(page)
         with allure.step('переход по ссылке'):
-            expect(page).to_have_url("https://developer.github.com/v3/")
+            actual_result = pages.search_page.rest_api_site_after_link(page)
+        assert actual_result == 'REST API', '"REST API" message is not correct'
 
     @allure.feature('GitHub source')
     @allure.story('Переход на GitHub источник')
